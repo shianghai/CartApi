@@ -3,6 +3,7 @@ using CartApi.Data;
 using CartApi.Domain.Entities;
 using CartApi.Interfaces;
 using CartApi.Middlewares;
+using CartApi.Services;
 using HotelApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,6 +52,7 @@ namespace CartApi
             
             services.AddTransient<IGenericRepository<ApiUser>, GenericRepository<ApiUser>>();
             services.AddTransient<UserManager<ApiUser>>();
+            services.AddTransient<ICartService, CartService>();
             services.AddTransient<IAuthManager, AuthManager>();
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IGenericRepository<CartApi.Domain.Entities.Cart>, GenericRepository<CartApi.Domain.Entities.Cart>>();

@@ -3,6 +3,7 @@ using CartApi.Domain.Entities;
 using CartApi.Dtos.Read;
 using CartApi.Dtos.Write;
 using CartApi.Interfaces;
+using CartApi.Services;
 using CartApi.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +23,15 @@ namespace CartApi.Controllers
         private readonly IGenericRepository<Item> _itemRepo;
         private readonly IGenericRepository<Domain.Entities.Cart> _cartRepo;
         private readonly IAuthManager _authManager;
+        private readonly ICartService _cartService;
 
 
-
-        public CartController(IGenericRepository<Item> itemRepo, IGenericRepository<Domain.Entities.Cart> cartRepo, IAuthManager authManager)
+        public CartController(IGenericRepository<Item> itemRepo, IGenericRepository<Domain.Entities.Cart> cartRepo, IAuthManager authManager, ICartService cartService)
         {
             _itemRepo = itemRepo;
             _cartRepo = cartRepo;
             _authManager = authManager;
+            _cartService = cartService;
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -40,74 +42,24 @@ namespace CartApi.Controllers
         public async Task<IActionResult> AddItem([FromBody] CartItemRequestBody cartItemRequestBody)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
-            var itemWriteDto = cartItemRequestBody.Item;
-            var itemQuantity = cartItemRequestBody.Quantity;
-
-            ItemReadDto itemReadDto;
-
 
             var token = Token.GetTokenFromRequest(Request);
             
             var user = await _authManager.GetUserFromTokenAsync(token);
+
             if (user == null) return Unauthorized("Could not get credentials of signed in user");
-            var cart = await _cartRepo.Get(c => c.UserId == user.Id, new List<string> { "CartItems" });
-            
 
-            if (cart == null)
+            var data = await _cartService.AddCartItemAsync(cartItemRequestBody, user.Id);
+            if (data == null) return StatusCode(StatusCodes.Status500InternalServerError, "Could Not Add Item To Cart");
+            var res = new Response<ItemReadDto>
             {
-                cart = new Domain.Entities.Cart();
-                itemWriteDto.Quantity = itemQuantity;
-                var cartItem = _itemRepo.Mapper.Map<Item>(itemWriteDto);
-                cartItem.AddedDate = DateTime.Now;
-                var cartItems = _itemRepo.Mapper.Map<IEnumerable<Item>>(cartItem).ToList();
-                cart.UserId = user.Id;
-                cart.CartItems = cartItems;
+                Status = true,
+                Message = "Item Added successfully",
+                Data = data
+            };
 
-                var insertedCart =  await _cartRepo.Insert(cart);
+            return Created("GetItemById" , res);
 
-                itemReadDto = _itemRepo.Mapper.Map<ItemReadDto>(cartItem);
-                
-                var res = new Response<ItemReadDto>
-                {
-                    Status = true,
-                    Message = "Item Added successfully",
-                    Data = itemReadDto
-                };
-
-                return Created("GetItemById" , res);
-            }
-            else
-            {
-                CartApi.Domain.Entities.Cart updatedCart;
-                var cartItem = _cartRepo.Mapper.Map<Item>(itemWriteDto);
-                cartItem.AddedDate = DateTime.Now;
-                var oldCartItem = cart.CartItems.FirstOrDefault(c => c.ItemId == itemWriteDto.ItemId);
-                if(oldCartItem == null)
-                {
-                    cartItem.Quantity = itemQuantity;
-                    cart.CartItems.Add(cartItem);
-                }
-                else
-                {
-                    oldCartItem.Quantity += itemQuantity;
-                }
-
-                updatedCart = await _cartRepo.Update(cart);
-
-                itemReadDto = _itemRepo.Mapper.Map<ItemReadDto>(cartItem);
-
-                var res = new Response<ItemReadDto>
-                {
-                    Status = true,
-                    Message = "Item Added successfully",
-                    Data = itemReadDto
-                };
-
-                return Created("GetItemById", res);
-            }
-
-            
-           
         }
 
 
@@ -124,34 +76,22 @@ namespace CartApi.Controllers
             
             var user = await _authManager.GetUserFromTokenAsync(token);
             if (user == null) return Unauthorized("Could not get credentials of signed in user");
-
-            var cart = await _cartRepo.Get(c => c.UserId == user.Id, new List<string>{ "CartItems"});
-
-            var cartItem = cart.CartItems.FirstOrDefault(x => x.ItemId == itemId);
-
+           
+            var cartItem = await _cartService.DeleteCartItemByIdAsync(itemId, user.Id);
             if(cartItem != null)
             {
-                bool isRemoved = cart.CartItems.Remove(cartItem);
-                if(isRemoved)
+                   
+
+                var cartReadDtos = _cartRepo.Mapper.Map<ItemReadDto>(cartItem);
+
+                var resultObject = new Response<ItemReadDto>
                 {
-                   var updatedCart =  await _cartRepo.Update(cart);
+                    Status = true,
+                    Message = "Item Removed successfully",
+                    Data = cartReadDtos
+                };
 
-                    var cartReadDtos = _cartRepo.Mapper.Map<ItemReadDto>(cartItem);
-
-                    var resultObject = new Response<ItemReadDto>
-                    {
-                        Status = true,
-                        Message = "Item Removed successfully",
-                        Data = cartReadDtos
-                    };
-
-                    return Ok(resultObject);
-                }
-                else
-                {
-                    throw new Exception($"Could Not Remove cart item for item with id {itemId}");
-                }
-
+                return Ok(resultObject);
             }
             var res = new Response<ItemWriteDto>
             {
@@ -159,7 +99,6 @@ namespace CartApi.Controllers
                 Message = $"Item with id {itemId} does not exist in the cart of the signed in user",
                 Data = null
             };
-
             return BadRequest(res);
         }
 
@@ -178,19 +117,14 @@ namespace CartApi.Controllers
 
             if (user == null) return Unauthorized("Could not get credentials of signed in user");
 
-            var cart = await _cartRepo.Get(c => c.UserId == user.Id, new List<string> { "CartItems" });
-
-            var cartItem = cart?.CartItems?.FirstOrDefault(x => x.ItemId == id);
+            var cartItem = await _cartService.GetCartItemByIdAsync(id, user.Id);
             if(cartItem != null)
-            {
-                var cartItems = _cartRepo.Mapper.Map<IEnumerable<Item>>(cartItem);
-
-                var data = _cartRepo.Mapper.Map<ItemReadDto>(cartItem);
+            {   
                 var response = new Response<ItemReadDto>
                 {
                     Status = true,
                     Message = "Item Retrieved Successfully",
-                    Data = data
+                    Data = cartItem
                 };
                 return Ok(response);
             }
@@ -219,35 +153,15 @@ namespace CartApi.Controllers
             var user = await _authManager.GetUserFromTokenAsync(token);
             if (user == null) return Unauthorized("Could not get credentials of signed in user");
 
-            var cart = await _cartRepo.Get(c => c.UserId == user.Id, new List<string> { "CartItems" });
+            var cartItems = await _cartService.SearchCartItemsAsync(parameters, user.Id);
 
-            IEnumerable<Item> query = cart.CartItems;
-
-            if(parameters.FromDate != null)
+            if(cartItems.Count() > 0)
             {
-                query = query.Where(i => i.AddedDate >= parameters.FromDate);
-            }
-            if(parameters.ToDate != null)
-            {
-                query = query.Where(i => i.AddedDate <= parameters.ToDate);
-            }
-            if(parameters.Quantity > 0)
-            {
-                query = query.Where(item => item.Quantity >= parameters.Quantity);
-            }
-
-            var cartItems = query.ToList();
-
-            if(cartItems.Count > 0)
-            {
-                var mappedCartItems = _itemRepo.Mapper.Map<IEnumerable<ItemReadDto>>(cartItems);
-
-
                 var response = new Response<IEnumerable<ItemReadDto>>
                 {
                     Status = true,
                     Message = "Cart Items Retrieved Successfully",
-                    Data = mappedCartItems
+                    Data = cartItems
                 };
 
                 return Ok(response);
