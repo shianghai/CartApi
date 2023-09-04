@@ -1,0 +1,169 @@
+ 2023-09-03 10:20:24.353 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 10:20:24.676 +00:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'CartApi.Middlewares.GlobalExceptionHandler'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass4_0.<UseMiddleware>b__0(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+ 2023-09-03 10:28:14.607 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 10:28:15.127 +00:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'CartApi.Middlewares.GlobalExceptionHandler'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass4_0.<UseMiddleware>b__0(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+ 2023-09-03 10:30:22.359 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 10:30:22.770 +00:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'CartApi.Middlewares.GlobalExceptionHandler'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass4_0.<UseMiddleware>b__0(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+ 2023-09-03 10:38:30.994 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 10:38:31.883 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+ 2023-09-03 10:38:31.884 +00:00 [INF] Hosting environment: Development
+ 2023-09-03 10:38:31.884 +00:00 [INF] Content root path: C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi
+ 2023-09-03 10:38:32.146 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/weatherforecast  
+ 2023-09-03 10:38:32.500 +00:00 [INF] Request finished in 363.6192ms 404 
+ 2023-09-03 10:38:39.446 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/  
+ 2023-09-03 10:38:39.457 +00:00 [INF] Request finished in 10.9459ms 404 
+ 2023-09-03 10:38:52.631 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger  
+ 2023-09-03 10:38:52.637 +00:00 [INF] Request finished in 6.0174ms 404 
+ 2023-09-03 10:38:58.227 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/cart  
+ 2023-09-03 10:38:58.233 +00:00 [INF] Request finished in 5.7514ms 404 
+ 2023-09-03 10:44:09.853 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 10:44:10.649 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+ 2023-09-03 10:44:10.649 +00:00 [INF] Hosting environment: Development
+ 2023-09-03 10:44:10.649 +00:00 [INF] Content root path: C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi
+ 2023-09-03 10:44:10.707 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/weatherforecast  
+ 2023-09-03 10:44:10.898 +00:00 [INF] Request finished in 197.9944ms 404 
+ 2023-09-03 10:44:18.795 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger  
+ 2023-09-03 10:44:18.808 +00:00 [INF] Request finished in 13.1953ms 301 
+ 2023-09-03 10:44:18.864 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/index.html  
+ 2023-09-03 10:44:19.857 +00:00 [INF] Request finished in 993.4461ms 200 text/html;charset=utf-8
+ 2023-09-03 10:44:19.919 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/swagger-ui.css  
+ 2023-09-03 10:44:19.922 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/swagger-ui-bundle.js  
+ 2023-09-03 10:44:19.924 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/swagger-ui-standalone-preset.js  
+ 2023-09-03 10:44:19.925 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/_vs/browserLink  
+ 2023-09-03 10:44:19.925 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/_framework/aspnetcore-browser-refresh.js  
+ 2023-09-03 10:44:19.943 +00:00 [INF] Request finished in 17.929ms 200 application/javascript; charset=utf-8
+ 2023-09-03 10:44:19.999 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+ 2023-09-03 10:44:19.999 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+ 2023-09-03 10:44:20.000 +00:00 [INF] Request finished in 80.5112ms 200 text/css
+ 2023-09-03 10:44:20.000 +00:00 [INF] Request finished in 75.2759ms 200 application/javascript
+ 2023-09-03 10:44:20.012 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+ 2023-09-03 10:44:20.012 +00:00 [INF] Request finished in 89.9761ms 200 application/javascript
+ 2023-09-03 10:44:20.124 +00:00 [INF] Request finished in 199.4003ms 200 text/javascript; charset=UTF-8
+ 2023-09-03 10:44:20.836 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/v1/swagger.json  
+ 2023-09-03 10:44:20.840 +00:00 [INF] Request finished in 5.0881ms 404 
+ 2023-09-03 10:44:20.846 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/favicon-32x32.png  
+ 2023-09-03 10:44:20.848 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+ 2023-09-03 10:44:20.848 +00:00 [INF] Request finished in 2.2278ms 200 image/png
+ 2023-09-03 10:46:29.097 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 10:46:29.492 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+ 2023-09-03 10:46:29.492 +00:00 [INF] Hosting environment: Development
+ 2023-09-03 10:46:29.492 +00:00 [INF] Content root path: C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi
+ 2023-09-03 10:46:29.543 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/index.html  
+ 2023-09-03 10:46:30.033 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/_vs/browserLink  
+ 2023-09-03 10:46:30.033 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/_framework/aspnetcore-browser-refresh.js  
+ 2023-09-03 10:46:30.036 +00:00 [INF] Request finished in 500.8872ms 200 text/html;charset=utf-8
+ 2023-09-03 10:46:30.039 +00:00 [INF] Request finished in 5.481ms 200 application/javascript; charset=utf-8
+ 2023-09-03 10:46:30.058 +00:00 [INF] Request finished in 24.8391ms 200 text/javascript; charset=UTF-8
+ 2023-09-03 10:46:30.282 +00:00 [INF] Request starting HTTP/2.0 GET https://localhost:44314/swagger/v1/swagger.json  
+ 2023-09-03 10:46:30.603 +00:00 [INF] Request finished in 322.7561ms 200 application/json;charset=utf-8
+ 2023-09-03 11:22:36.476 +00:00 [INF] Request starting HTTP/2.0 POST https://localhost:44314/api/Cart/add application/json 129
+ 2023-09-03 11:22:36.649 +00:00 [INF] Executing endpoint 'CartApi.Controllers.CartController.AddItem (CartApi)'
+ 2023-09-03 11:22:36.757 +00:00 [INF] Route matched with {action = "AddItem", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddItem(CartApi.Utilities.CartItemRequestBody) on controller CartApi.Controllers.CartController (CartApi).
+ 2023-09-03 11:22:39.231 +00:00 [INF] Entity Framework Core 3.1.18 initialized 'CartDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+ 2023-09-03 11:22:39.295 +00:00 [INF] Executed action CartApi.Controllers.CartController.AddItem (CartApi) in 2534.3592ms
+ 2023-09-03 11:22:39.298 +00:00 [INF] Executed endpoint 'CartApi.Controllers.CartController.AddItem (CartApi)'
+ 2023-09-03 11:22:39.310 +00:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The response headers cannot be modified because the response has already started.
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.ThrowIfReadOnly()
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CartApi.Middlewares.GlobalExceptionHandler.InvokeAsync(HttpContext context) in C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi\Middlewares\GlobalExceptionHandler.cs:line 44
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ 2023-09-03 11:22:39.435 +00:00 [WRN] The response has already started, the error page middleware will not be executed.
+ 2023-09-03 11:22:39.441 +00:00 [ERR] Connection ID "18230571300991009000", Request ID "400000e9-0002-fd00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+System.InvalidOperationException: The response headers cannot be modified because the response has already started.
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.ThrowIfReadOnly()
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CartApi.Middlewares.GlobalExceptionHandler.InvokeAsync(HttpContext context) in C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi\Middlewares\GlobalExceptionHandler.cs:line 44
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.IIS.Core.IISHttpContextOfT`1.ProcessRequestAsync()
+ 2023-09-03 11:22:39.454 +00:00 [INF] Request finished in 3020.6239ms 500 
+ 2023-09-03 11:28:21.385 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 11:28:22.194 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+ 2023-09-03 11:28:22.195 +00:00 [INF] Hosting environment: Development
+ 2023-09-03 11:28:22.195 +00:00 [INF] Content root path: C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi
+ 2023-09-03 11:28:22.301 +00:00 [INF] Request starting HTTP/2.0 POST https://localhost:44314/api/Cart/add application/json 129
+ 2023-09-03 11:28:22.464 +00:00 [INF] Executing endpoint 'CartApi.Controllers.CartController.AddItem (CartApi)'
+ 2023-09-03 11:28:22.689 +00:00 [INF] Route matched with {action = "AddItem", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddItem(CartApi.Utilities.CartItemRequestBody) on controller CartApi.Controllers.CartController (CartApi).
+ 2023-09-03 11:28:25.603 +00:00 [INF] Entity Framework Core 3.1.18 initialized 'CartDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+ 2023-09-03 11:28:25.801 +00:00 [INF] Executed action CartApi.Controllers.CartController.AddItem (CartApi) in 3096.0839ms
+ 2023-09-03 11:28:25.811 +00:00 [INF] Executed endpoint 'CartApi.Controllers.CartController.AddItem (CartApi)'
+ 2023-09-03 11:28:26.094 +00:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Text.Json.JsonException: A possible object cycle was detected which is not supported. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 0.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializerCycleDetected(Int32 maxDepth)
+   at System.Text.Json.JsonSerializer.Write(Utf8JsonWriter writer, Int32 originalWriterDepth, Int32 flushThreshold, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteCore(Utf8JsonWriter writer, Object value, Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializer.WriteCore(PooledByteBufferWriter output, Object value, Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializer.WriteCoreString(Object value, Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializer.Serialize[TValue](TValue value, JsonSerializerOptions options)
+   at CartApi.Utilities.Response`1.ToString() in C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi\Utilities\Response.cs:line 18
+   at CartApi.Middlewares.GlobalExceptionHandler.InvokeAsync(HttpContext context) in C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi\Middlewares\GlobalExceptionHandler.cs:line 34
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ 2023-09-03 11:28:26.274 +00:00 [INF] Request finished in 3997.4123ms 500 text/plain
+ 2023-09-03 11:29:28.215 +00:00 [INF] User profile is available. Using 'C:\Users\shian\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+ 2023-09-03 11:29:28.818 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+ 2023-09-03 11:29:28.818 +00:00 [INF] Hosting environment: Development
+ 2023-09-03 11:29:28.818 +00:00 [INF] Content root path: C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi
+ 2023-09-03 11:29:28.903 +00:00 [INF] Request starting HTTP/2.0 POST https://localhost:44314/api/Cart/add application/json 129
+ 2023-09-03 11:29:29.049 +00:00 [INF] Executing endpoint 'CartApi.Controllers.CartController.AddItem (CartApi)'
+ 2023-09-03 11:29:29.201 +00:00 [INF] Route matched with {action = "AddItem", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddItem(CartApi.Utilities.CartItemRequestBody) on controller CartApi.Controllers.CartController (CartApi).
+ 2023-09-03 11:29:31.651 +00:00 [INF] Entity Framework Core 3.1.18 initialized 'CartDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+ 2023-09-03 11:29:31.772 +00:00 [INF] Executed action CartApi.Controllers.CartController.AddItem (CartApi) in 2555.421ms
+ 2023-09-03 11:29:31.777 +00:00 [INF] Executed endpoint 'CartApi.Controllers.CartController.AddItem (CartApi)'
+ 2023-09-03 11:29:31.831 +00:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The response headers cannot be modified because the response has already started.
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.ThrowIfReadOnly()
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CartApi.Middlewares.GlobalExceptionHandler.InvokeAsync(HttpContext context) in C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi\Middlewares\GlobalExceptionHandler.cs:line 45
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ 2023-09-03 11:29:31.927 +00:00 [WRN] The response has already started, the error page middleware will not be executed.
+ 2023-09-03 11:29:31.941 +00:00 [ERR] Connection ID "18302628903618871304", Request ID "40000009-0004-fe00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+System.InvalidOperationException: The response headers cannot be modified because the response has already started.
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.ThrowIfReadOnly()
+   at Microsoft.AspNetCore.HttpSys.Internal.HeaderCollection.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CartApi.Middlewares.GlobalExceptionHandler.InvokeAsync(HttpContext context) in C:\Users\shian\OneDrive\Desktop\pers\.Net Core\CartApi\Middlewares\GlobalExceptionHandler.cs:line 45
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.IIS.Core.IISHttpContextOfT`1.ProcessRequestAsync()
+ 2023-09-03 11:29:31.973 +00:00 [INF] Request finished in 3087.8612ms 500 
