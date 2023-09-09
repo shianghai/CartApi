@@ -1,5 +1,6 @@
 ﻿using CartApi.Domain.Entities;
 using CartApi.Dtos.Read;
+using CartApi.Dtos.Write;
 using CartApi.Interfaces;
 using CartApi.Utilities;
 using System;
@@ -20,11 +21,8 @@ namespace CartApi.Services
             _cartRepo = cartRepo;
             _authManager = authManager;
         }
-        public async Task<ItemReadDto> AddCartItemAsync(CartItemRequestBody cartItemRequestBody, long userId)
+        public async Task<ItemReadDto> AddCartItemAsync(ItemWriteDto itemWriteDto, long userId)
         {
-            
-            var itemWriteDto = cartItemRequestBody.Item;
-            var itemQuantity = cartItemRequestBody.Quantity;
 
             ItemReadDto itemReadDto = null;
 
@@ -34,18 +32,16 @@ namespace CartApi.Services
             if (cart == null)
             {
                 cart = new Domain.Entities.Cart();
-                itemWriteDto.Quantity = itemQuantity;
                
                 
                 cart.UserId = userId;
                 var insertedCart = await _cartRepo.Insert(cart);
 
-               
-
 
                 if (insertedCart != null)
                 {
                     var cartItem = _itemRepo.Mapper.Map<Item>(itemWriteDto);
+                    cartItem.CartId = insertedCart.Id;
                     cartItem.AddedDate = DateTime.Now;
 
                     var insertedCartItem = _itemRepo.Insert(cartItem);
@@ -67,12 +63,11 @@ namespace CartApi.Services
                 var oldCartItem = cart.CartItems.FirstOrDefault(c => c.ItemId == itemWriteDto.ItemId);
                 if (oldCartItem == null)
                 {
-                    cartItem.Quantity = itemQuantity;
                     updatedItem = await _itemRepo.Insert(cartItem);
                 }
                 else
                 {
-                    oldCartItem.Quantity += itemQuantity;
+                    oldCartItem.Quantity  += cartItem.Quantity;
                     updatedItem = await _itemRepo.Insert(oldCartItem);
                 }
                 
@@ -88,15 +83,14 @@ namespace CartApi.Services
         {
             var cart = await _cartRepo.Get(c => c.UserId == userId, new List<string> { "CartItems" });
 
-            var cartItem = cart.CartItems.FirstOrDefault(x => x.ItemId == itemId);
+            var cartItem = await _itemRepo.Get(i => i.ItemId == itemId && i.CartId == cart.Id);
 
             if(cartItem != null)
             {
-                bool isDeleted = cart.CartItems.Remove(cartItem);
+                bool isDeleted = await _itemRepo.Delete(itemId);
                 if (isDeleted)
                 {
-                    var updatedCart = await _cartRepo.Update(cart);
-                    return updatedCart != null ? cartItem : null;
+                    return cartItem;
                 }
                 return null;
                 
@@ -144,7 +138,7 @@ namespace CartApi.Services
     {
         Task<ItemReadDto> GetCartItemByIdAsync(int id, long userId);
 
-        Task<ItemReadDto> AddCartItemAsync(CartItemRequestBody cartItemRequestBody, long id);
+        Task<ItemReadDto> AddCartItemAsync(ItemWriteDto itemWriteDto, long id);
 
         Task<IEnumerable<ItemReadDto>> SearchCartItemsAsync(RequestParameter parameters, long userId);
 

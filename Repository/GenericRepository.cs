@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Net.WebSockets;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using CartApi.Data;
 using CartApi.Interfaces;
 
@@ -14,7 +12,6 @@ namespace Cart.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-
         private readonly CartDbContext _context;
         private readonly DbSet<T> _db;
         private readonly IMapper _mapper;
@@ -27,8 +24,6 @@ namespace Cart.Repository
         }
 
         public IMapper Mapper => _mapper;
-
-        
 
         public IEnumerable<TDestination> MapCollection<TSource, TDestination>(IEnumerable<TSource> sourceCollection)
         {
