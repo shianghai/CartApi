@@ -79,7 +79,8 @@ namespace CartApi
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Cart Api", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Cart Api", Version = "v1",  });
+                
             });
             
         }
@@ -91,7 +92,15 @@ namespace CartApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cart API V1");
+
+                    // Optionally, you can configure other Swagger UI options here:
+                    // For example, you can set the routePrefix to an empty string to achieve a custom URL structure
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseHttpsRedirection();

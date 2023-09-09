@@ -21,8 +21,9 @@ namespace CartApi.Services
             _cartRepo = cartRepo;
             _authManager = authManager;
         }
-        public async Task<ItemReadDto> AddCartItemAsync(ItemWriteDto itemWriteDto, long userId)
+        public async Task<ItemReadDto> AddCartItemAsync(CartItemRequestBody cartItemRequestBody, long userId)
         {
+            var itemWriteDto = cartItemRequestBody.Item;
 
             ItemReadDto itemReadDto = null;
 
@@ -67,7 +68,18 @@ namespace CartApi.Services
                 }
                 else
                 {
-                    oldCartItem.Quantity  += cartItem.Quantity;
+                    switch (cartItemRequestBody.ActionType)
+                    {
+                        case ItemActionType.INCREASE:
+                            oldCartItem.Quantity += cartItem.Quantity;
+                            break;
+                        case ItemActionType.DECREASE:
+                            if (oldCartItem.Quantity - itemWriteDto.Quantity < 0)
+                                throw new Exception($"Cannot reduce the quantity of cart item with id {cartItem.ItemId} with specified quantity of {itemWriteDto.Quantity}");
+                            oldCartItem.Quantity -= cartItem.Quantity;
+                            break;
+                    }
+                   
                     updatedItem = await _itemRepo.Insert(oldCartItem);
                 }
                 
@@ -138,7 +150,7 @@ namespace CartApi.Services
     {
         Task<ItemReadDto> GetCartItemByIdAsync(int id, long userId);
 
-        Task<ItemReadDto> AddCartItemAsync(ItemWriteDto itemWriteDto, long id);
+        Task<ItemReadDto> AddCartItemAsync(CartItemRequestBody cartItemRequestBody, long id);
 
         Task<IEnumerable<ItemReadDto>> SearchCartItemsAsync(RequestParameter parameters, long userId);
 

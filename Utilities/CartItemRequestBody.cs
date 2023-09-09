@@ -6,6 +6,6 @@ namespace CartApi.Utilities
     {
         public ItemWriteDto Item { get; set; }
 
-        public int Quantity { get; set; }
+        public ItemActionType ActionType { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace CartApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPost("item/add")]
-        public async Task<IActionResult> AddItem([FromBody] ItemWriteDto itemWriteDto)
+        public async Task<IActionResult> AddItem([FromBody] CartItemRequestBody cartItemRequestBody)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -49,7 +49,7 @@ namespace CartApi.Controllers
 
             if (user == null) return Unauthorized("Could not get credentials of signed in user");
 
-            var data = await _cartService.AddCartItemAsync(itemWriteDto, user.Id);
+            var data = await _cartService.AddCartItemAsync(cartItemRequestBody, user.Id);
             if (data == null) return StatusCode(StatusCodes.Status500InternalServerError, "Could Not Add Item To Cart");
             var res = new Response<ItemReadDto>
             {
