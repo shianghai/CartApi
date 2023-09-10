@@ -26,6 +26,24 @@ namespace CartApi.Middlewares
             {
                 await _next(context);
             }
+            catch (BackendException e)
+            {
+                _logger.LogError(e.Message, e);
+
+                context.Response.StatusCode = e.Code;
+
+                string response = new Response<object>
+                {
+                    Message = e.Message,
+                    Status = false,
+                    Data = new List<object> { e.Data }
+                }.ToString();
+
+                context.Response.ContentType = "application/json";
+
+                await context.Response.WriteAsync(response);
+
+            }
             catch (Exception e)
             {
                 _logger.LogError(e.Message, e);
@@ -45,6 +63,7 @@ namespace CartApi.Middlewares
 
 
             }
+           
         }
     }
 }

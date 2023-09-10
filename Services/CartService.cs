@@ -3,6 +3,7 @@ using CartApi.Dtos.Read;
 using CartApi.Dtos.Write;
 using CartApi.Interfaces;
 using CartApi.Utilities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,21 +72,26 @@ namespace CartApi.Services
                     switch (cartItemRequestBody.ActionType)
                     {
                         case ItemActionType.INCREASE:
+                           
                             oldCartItem.Quantity += cartItem.Quantity;
                             break;
                         case ItemActionType.DECREASE:
                             if (oldCartItem.Quantity - itemWriteDto.Quantity < 0)
                                 throw new Exception($"Cannot reduce the quantity of cart item with id {cartItem.ItemId} with specified quantity of {itemWriteDto.Quantity}");
+                            
                             oldCartItem.Quantity -= cartItem.Quantity;
                             break;
+                        default:
+                            throw new BackendException("Invalid Actiontype", StatusCodes.Status400BadRequest);
+                        
                     }
                    
-                    updatedItem = await _itemRepo.Insert(oldCartItem);
+                    updatedItem = await _itemRepo.Update(oldCartItem);
                 }
                 
                 if(updatedItem != null)
                 {
-                    itemReadDto = _itemRepo.Mapper.Map<ItemReadDto>(cartItem);
+                    itemReadDto = _itemRepo.Mapper.Map<ItemReadDto>(updatedItem);
                 }
 
                 return itemReadDto;
@@ -93,13 +99,13 @@ namespace CartApi.Services
         }
         public async Task<Item> DeleteCartItemByIdAsync(int itemId, long userId)
         {
-            var cart = await _cartRepo.Get(c => c.UserId == userId, new List<string> { "CartItems" });
+            var cart = await _cartRepo.Get(c => c.UserId == userId);
 
             var cartItem = await _itemRepo.Get(i => i.ItemId == itemId && i.CartId == cart.Id);
 
             if(cartItem != null)
             {
-                bool isDeleted = await _itemRepo.Delete(itemId);
+                bool isDeleted = await _itemRepo.Delete(cartItem);
                 if (isDeleted)
                 {
                     return cartItem;
@@ -114,7 +120,7 @@ namespace CartApi.Services
         {
             var cart = await _cartRepo.Get(c => c.UserId == userId, new List<string> { "CartItems" });
 
-            var cartItem = cart?.CartItems?.FirstOrDefault(x => x.ItemId == id);
+            var cartItem = _itemRepo.Get(i => i.CartId == cart.Id);
             var data = _cartRepo.Mapper.Map<ItemReadDto>(cartItem);
             return data;
         }

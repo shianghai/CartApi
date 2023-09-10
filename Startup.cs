@@ -95,11 +95,11 @@ namespace CartApi
                 app.UseSwaggerUI(c =>
                 {
                     
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cart API V1");
+                    //c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cart API V1");
 
-                    // Optionally, you can configure other Swagger UI options here:
-                    // For example, you can set the routePrefix to an empty string to achieve a custom URL structure
-                    c.RoutePrefix = string.Empty;
+                    //// Optionally, you can configure other Swagger UI options here:
+                    //// For example, you can set the routePrefix to an empty string to achieve a custom URL structure
+                    //c.RoutePrefix = string.Empty;
                 });
             }
 

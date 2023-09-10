@@ -10,7 +10,7 @@ namespace CartApi.Utilities
             var token = request.Headers["Authorization"].ToString();
             if (string.IsNullOrWhiteSpace(token) || !token.StartsWith("Bearer "))
             {
-                throw new Exception("Please specify the correct token format in the header");
+                throw new BackendException("Please specify the correct token format in the header", StatusCodes.Status401Unauthorized);
             }
 
             var validToken = token.Substring("Bearer ".Length).Trim();

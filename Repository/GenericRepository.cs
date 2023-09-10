@@ -39,7 +39,7 @@ namespace Cart.Repository
         }
 
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteById(int id)
         {
 
             var entity = await _db.FindAsync(id);
@@ -121,6 +121,14 @@ namespace Cart.Repository
             _db.Attach(entity).State = EntityState.Modified;
             int numberOfChanges = await _context.SaveChangesAsync(); 
             return numberOfChanges > 0 ? entity : null;
+        }
+
+        public async Task<bool> Delete(T entity)
+        {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            _db.Remove(entity);
+            int numberOfChanges = await _context.SaveChangesAsync();
+            return numberOfChanges > 0;
         }
     }
 }

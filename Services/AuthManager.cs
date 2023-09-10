@@ -1,6 +1,8 @@
 ﻿using CartApi.Domain.Entities;
 using CartApi.Interfaces;
+using CartApi.Utilities;
 using HotelApi.DTOS.WriteDtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -107,6 +109,11 @@ namespace HotelApi.Services
         {
             var principal = ValidateToken(token);
             var user = await _userRepo.Get(u => u.UserName == principal.Identity.Name);
+            if(user == null)
+            {
+                throw new BackendException("Could not get credentials of signed in user", StatusCodes.Status401Unauthorized);
+
+            }
             return user;
         }
     }

@@ -32,6 +32,8 @@ namespace CartApi.Interfaces
 
         Task<bool> DeleteRange(IEnumerable<T> entities);
 
-        Task<bool> Delete(int id);
+        Task<bool> DeleteById(int id);
+
+        Task<bool> Delete(T entity);
     }
 }

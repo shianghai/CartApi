@@ -47,7 +47,6 @@ namespace CartApi.Controllers
             
             var user = await _authManager.GetUserFromTokenAsync(token);
 
-            if (user == null) return Unauthorized("Could not get credentials of signed in user");
 
             var data = await _cartService.AddCartItemAsync(cartItemRequestBody, user.Id);
             if (data == null) return StatusCode(StatusCodes.Status500InternalServerError, "Could Not Add Item To Cart");
@@ -75,7 +74,6 @@ namespace CartApi.Controllers
             var token = Token.GetTokenFromRequest(Request);
             
             var user = await _authManager.GetUserFromTokenAsync(token);
-            if (user == null) return Unauthorized("Could not get credentials of signed in user");
            
             var cartItem = await _cartService.DeleteCartItemByIdAsync(itemId, user.Id);
             if(cartItem != null)
@@ -115,7 +113,6 @@ namespace CartApi.Controllers
             
             var user = await _authManager.GetUserFromTokenAsync(token);
 
-            if (user == null) return Unauthorized("Could not get credentials of signed in user");
 
             var cartItem = await _cartService.GetCartItemByIdAsync(id, user.Id);
             if(cartItem != null)
@@ -151,7 +148,6 @@ namespace CartApi.Controllers
             var token = Token.GetTokenFromRequest(Request);
             
             var user = await _authManager.GetUserFromTokenAsync(token);
-            if (user == null) return Unauthorized("Could not get credentials of signed in user");
 
             var cartItems = await _cartService.SearchCartItemsAsync(parameters, user.Id);
 

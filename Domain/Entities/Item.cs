@@ -5,6 +5,8 @@ namespace CartApi.Domain.Entities
 {
     public class Item
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public int ItemId { get; set; }
 
         public string ItemName { get; set; }    
