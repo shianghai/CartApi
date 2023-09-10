@@ -120,7 +120,7 @@ namespace CartApi.Services
         {
             var cart = await _cartRepo.Get(c => c.UserId == userId, new List<string> { "CartItems" });
 
-            var cartItem = _itemRepo.Get(i => i.CartId == cart.Id);
+            var cartItem = await _itemRepo.Get(i => i.CartId == cart.Id && i.ItemId == id);
             var data = _cartRepo.Mapper.Map<ItemReadDto>(cartItem);
             return data;
         }
