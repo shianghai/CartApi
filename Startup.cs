@@ -52,7 +52,6 @@ namespace CartApi
             
             services.AddTransient<IGenericRepository<ApiUser>, GenericRepository<ApiUser>>();
             services.AddTransient<UserManager<ApiUser>>();
-            services.AddTransient<RoleManager<IdentityRole<long>>>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IAuthManager, AuthManager>();
             services.AddAutoMapper(typeof(MappingProfile));

@@ -19,16 +19,13 @@ namespace CartAPi.Controllers
         private readonly UserManager<ApiUser> _userManager;
         private readonly SignInManager<ApiUser> _signInManager;
         private readonly IMapper _mapper;
-        private readonly ILogger<AccountController> _logger;
         private readonly IAuthManager _authManager;
         public AccountController(
-            ILogger<AccountController> logger,
             IMapper mapper,
             SignInManager<ApiUser> signInManager,
             UserManager<ApiUser> userManager,
             IAuthManager authManager)
         {
-            _logger = logger;
             _mapper = mapper;
             _signInManager = signInManager;
             _userManager = userManager;
