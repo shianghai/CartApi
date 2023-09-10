@@ -16,7 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
-
+using System;
 
 namespace CartApi
 {
@@ -52,6 +52,7 @@ namespace CartApi
             
             services.AddTransient<IGenericRepository<ApiUser>, GenericRepository<ApiUser>>();
             services.AddTransient<UserManager<ApiUser>>();
+            services.AddTransient<RoleManager<IdentityRole<long>>>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IAuthManager, AuthManager>();
             services.AddAutoMapper(typeof(MappingProfile));

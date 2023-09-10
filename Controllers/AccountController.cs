@@ -48,7 +48,6 @@ namespace CartAPi.Controllers
             var result = await _userManager.CreateAsync(user, userWriteDto.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRolesAsync(user, userWriteDto.Roles);
                 return StatusCode(201, "User Created Successfully");
 
             }

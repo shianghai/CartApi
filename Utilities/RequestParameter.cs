@@ -10,7 +10,9 @@ namespace CartApi.Utilities
 
         public int? Quantity { get; set; }
 
+        public string ItemName { get; set; }
 
+        public string PhoneNumber { get; set; }
     }
 }
 

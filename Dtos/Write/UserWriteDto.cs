@@ -23,6 +23,5 @@ namespace HotelApi.DTOS.WriteDtos
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        public ICollection<string> Roles { get; set; }
     }
 }

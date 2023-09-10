@@ -77,7 +77,7 @@ namespace CartApi.Services
                             break;
                         case ItemActionType.DECREASE:
                             if (oldCartItem.Quantity - itemWriteDto.Quantity < 0)
-                                throw new Exception($"Cannot reduce the quantity of cart item with id {cartItem.ItemId} with specified quantity of {itemWriteDto.Quantity}");
+                                throw new BackendException($"Cannot reduce the quantity of cart item with id {cartItem.ItemId} with specified quantity of {itemWriteDto.Quantity}", StatusCodes.Status400BadRequest);
                             
                             oldCartItem.Quantity -= cartItem.Quantity;
                             break;
@@ -127,9 +127,7 @@ namespace CartApi.Services
 
         public async Task<IEnumerable<ItemReadDto>> SearchCartItemsAsync(RequestParameter parameters, long userId)
         {
-            var cart = await _cartRepo.Get(c => c.UserId == userId, new List<string> { "CartItems" });
-
-            IEnumerable<Item> query = cart.CartItems;
+            IEnumerable<Item> query = null;
 
             if (parameters.FromDate != null)
             {
@@ -143,6 +141,11 @@ namespace CartApi.Services
             {
                 query = query.Where(item => item.Quantity >= parameters.Quantity);
             }
+            if(parameters.ItemName != null)
+            {
+                query = query.Where(q => q.ItemName ==  parameters.ItemName);
+            }
+            
 
             var cartItems = query.ToList();
 

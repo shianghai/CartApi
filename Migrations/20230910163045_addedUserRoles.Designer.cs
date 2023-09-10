@@ -3,15 +3,17 @@ using System;
 using CartApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CartApi.Migrations
 {
     [DbContext(typeof(CartDbContext))]
-    partial class CartDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230910163045_addedUserRoles")]
+    partial class addedUserRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,16 +165,51 @@ namespace CartApi.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "4a561f80-df2f-45bf-8f3e-07a31b588d9c",
+                            ConcurrencyStamp = "b899efe3-be76-46f8-8af8-a24684c9c455",
                             Name = "USER",
                             NormalizedName = "user"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "dcc3ddea-fdae-43ab-9aba-2ada994200c7",
+                            ConcurrencyStamp = "85272670-d9eb-4f50-89be-95e950dfafaa",
                             Name = "ADMIN",
                             NormalizedName = "admin"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ecec713c-c336-4a39-af3c-23b1f5b19433",
+                            ConcurrencyStamp = "be192512-68b7-4f96-b527-4738f4200f4a",
+                            Name = "user",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "01a2bcd9-0c89-446a-a78d-c9e548aa0941",
+                            ConcurrencyStamp = "90e8e70c-9f00-4d0a-b180-f612ad12a06f",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 
